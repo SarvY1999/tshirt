@@ -3,6 +3,10 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const {signout, signup, signin, isSignedIn} = require("../controllers/auth")
 
+/**
+ * References
+ * routing :- https://expressjs.com/en/guide/routing.html
+ */
 router.post("/signup",[
     check("name").isLength({min:3}).withMessage('Name must be at least 3 chars long'),
     check("email").isEmail().withMessage('Email is required'),
