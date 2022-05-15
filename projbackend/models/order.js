@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const  {ObjectId} = mongoose.Schema
 const productCartSchema = new mongoose.Schema({
     product:{
-        type: ObjectID,
+        type: ObjectId,
         ref: "Product"
     },
     name: String,

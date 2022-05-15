@@ -47,7 +47,7 @@ exports.updateUser = (req, res) => {
 // user purchase list 
 // Pulling this information from order model 
 exports.userPurchaseList = (req, res) => {
-    Order.find({user: req.profile._id,})
+    Order.find({user: req.profile._id})
     .populate("user", "_id name")
     .exec((err, order)=>{
         if(err){
