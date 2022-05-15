@@ -52,7 +52,7 @@ exports.userPurchaseList = (req, res) => {
     .exec((err, order)=>{
         if(err){
             return res.status(400).json({
-                error: "No reder in this account"
+                error: "No order in this account"
             })
         }return res.json(order)
     })
