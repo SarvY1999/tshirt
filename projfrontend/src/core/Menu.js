@@ -43,6 +43,11 @@ const Menu = ({history}) => {
                     Signin
                 </Link>
             </li>
+            <li className="nav-item">
+                <Link style={currentTab(history, "/signout")} className="nav-link" to ="/signout">
+                    Signout
+                </Link>
+            </li>
         </ul>
     </div>    
 )}
