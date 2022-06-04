@@ -1,6 +1,5 @@
 import React from "react"
 import Menu from "./Menu";
-
 const Base = ({
     title = "My Title",
     description = "My Description",

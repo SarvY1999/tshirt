@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Routes, BrowserRouter as Router} from "react-router-dom"
+import {Route, Switch, BrowserRouter as Router} from "react-router-dom"
 import Home from "./core/Home"
 /**
  * 
@@ -8,9 +8,9 @@ import Home from "./core/Home"
 const Routers = () => {
     return (
         <Router>
-            <Routes>
-                <Route path ="/" exact element={<Home/>}></Route>
-            </Routes>
+            <Switch>
+                <Route path ="/" exact component={Home}></Route>
+            </Switch>
         </Router>
     )
 }
