@@ -47,7 +47,7 @@ const Signin = () => {
                 return <p>redirect to user dashboard</p>
             }
         }
-        if(isAuthenticated){
+        if(isAuthenticated()){
             return <Redirect to= "/" />
         }
     }
