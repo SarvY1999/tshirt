@@ -23,19 +23,19 @@ const Signin = () => {
         event.preventDefault()
         setValues({...values, error: false, loading: true})
         signin({email, password})
-        .then(data => {
-            if(data.error){
-                setValues({...values, error: data.error, loading: false})
-            }else{
-                authenticate(data, () => {
-                    setValues({
-                        ...values,
-                        didRedirect: true
+            .then(data => {
+                if(data.error){
+                    setValues({...values, error: data.error, loading: false})
+                }else{
+                    authenticate(data, () => {
+                        setValues({
+                            ...values,
+                            didRedirect: true
+                        })
                     })
-                })
-            }
-        })
-        .catch(console.log("Sigin request failed"));
+                }
+            })
+            .catch(console.log("Signin request failed"));
     }
 
     const performRedirect = () => {
