@@ -39,7 +39,6 @@ const Signin = () => {
     }
 
     const performRedirect = () => {
-        //TODO: Come back
         if(didRedirect){
             if(user && user.role === 1){
                 return <Redirect to="/admin/dashboard" />

@@ -19,7 +19,7 @@ const Routers = () => {
                 <Route path ="/signup" exact component={Signup}></Route>
                 <Route path ="/signin" exact component={Signin}></Route>
                 <PrivateRoute path ="/user/dashboard" exact component={UserDashBoard} />
-                <AdminRoute path ="/user/dashboard" exact component={AdminDashBoard} />
+                <AdminRoute path ="/admin/dashboard" exact component={AdminDashBoard} />
             </Switch>
         </Router>
     )
