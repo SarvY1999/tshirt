@@ -23,28 +23,27 @@ const Signin = () => {
         event.preventDefault()
         setValues({...values, error: false, loading: true})
         signin({email, password})
-        .then(data => {
-            if(data.error){
-                setValues({...values, error: data.error, loading: false})
-            }else{
-                authenticate(data, () => {
-                    setValues({
-                        ...values,
-                        didRedirect: true
+            .then(data => {
+                if(data.error){
+                    setValues({...values, error: data.error, loading: false})
+                }else{
+                    authenticate(data, () => {
+                        setValues({
+                            ...values,
+                            didRedirect: true
+                        })
                     })
-                })
-            }
-        })
-        .catch(console.log("Sigin request failed"));
+                }
+            })
+            .catch(console.log("Signin request failed"));
     }
 
     const performRedirect = () => {
-        //TODO: Come back
         if(didRedirect){
             if(user && user.role === 1){
-                return <p>redirect to admin</p>
+                return <Redirect to="/admin/dashboard" />
             }else{
-                return <p>redirect to user dashboard</p>
+                return <Redirect to="/user/dashboard" />
             }
         }
         if(isAuthenticated()){
