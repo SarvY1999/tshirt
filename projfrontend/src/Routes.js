@@ -7,6 +7,7 @@ import AdminRoute from "./auth/helper/AdminRoutes"
 import PrivateRoute from "./auth/helper/PrivateRoutes"
 import UserDashBoard from './user/UserDashBoard'
 import AdminDashBoard from './user/AdminDashBoard'
+import AddCategory from "./admin/AddCategory"
 /**
  * 
  * Note: From version 6 onwards, the react-router-dom has replaced “Switch” with “Routes”
@@ -20,6 +21,7 @@ const Routers = () => {
                 <Route path ="/signin" exact component={Signin}></Route>
                 <PrivateRoute path ="/user/dashboard" exact component={UserDashBoard} />
                 <AdminRoute path ="/admin/dashboard" exact component={AdminDashBoard} />
+                <AdminRoute path ="/admin/create/category" exact component={AddCategory} />
             </Switch>
         </Router>
     )
