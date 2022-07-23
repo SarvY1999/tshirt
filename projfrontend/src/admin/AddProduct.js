@@ -1,25 +1,52 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import Base from "../core/Base";
+import { getCategories } from "./helper/adminapicall";
+import { isAuthenticated } from "../auth/helper/index";
 
 const AddProduct = () => {
+
+    const {user, token} = isAuthenticated();
 
     const [values, setValues] = useState({
         name: "",
         description: "", 
         price: "", 
-        stock: ""
-    }) 
+        stock: "",
+        categories: [],
+        category: "",
+        loading: false,
+        error: "",
+        createdProduct: "",
+        getaRedirect: false,
+        formData: ""
+    }) ;
 
-    const {name, description, price, stock} = values
+    const {name, description, price, stock, categories, category, loading, error, createdProduct, getaRedirect, formData} = values
+
+    const preload = () => {
+        getCategories().then(data => {
+            if(data.error){
+                setValues({...values, error: data.error})
+            }else{
+                setValues({...values, categories: data, formData: new FormData()})
+            }
+        })
+    }
+    
+    useEffect(()=>{
+        preload();
+    }, []);
 
     const onSubmit = () => {
 
     }
 
     const handleChange = name => event => {
-
-    }
+        const value = name === "photo" ? event.target.file[0] : event.target.value
+        formData.set(name, value);
+        setValues({...values, [name]: value});
+    };
 
 
     const createProductForm = () => (
@@ -70,8 +97,7 @@ const AddProduct = () => {
               placeholder="Category"
             >
               <option>Select</option>
-              <option value="a">a</option>
-              <option value="b">b</option>
+              {categories && categories.map((cate, index)=> (<option key={index} value={cate._id}>{cate.name}</option>))}
             </select>
           </div>
           <div className="form-group">
