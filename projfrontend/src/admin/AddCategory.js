@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import Base from '../core/Base';
 import { isAuthenticated } from '../auth/helper';
 import { Link } from 'react-router-dom';
-
+import {createCategory} from "./helper/adminapicall"
 const AddCategory = () => {
 
-    const [] = useState("initialState");
+    const [name, setName] = useState("");
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
 
@@ -19,13 +19,52 @@ const AddCategory = () => {
         </div>
     }
 
+    const handleChange = (event) => {
+            setError("");
+            setName(event.target.value);
+    }
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        setError("");
+        setSuccess(false);
+
+        //backend request fired
+        createCategory(user._id, token, {name})
+            .then(data => {
+                if(data.error){
+                    setError(true)
+                }else{
+                    setError("");
+                    setSuccess(true);
+                    setName("");
+                }
+            })
+
+    };
+    
+    const successMessage = () => {
+        if(success){
+            return <h4 className='test-success'>Category created successfully</h4>
+        }
+    }
+
+    const warningMessage = () => {
+        if(error){
+            return <h4 className='test-success'>Failed to create Category</h4>
+        }
+    }
+    
+    
     const myCategoryFrom = () => {
         return <form>
             <div className='form-group'>
                 <p className='lead font-weight-normal pt-3'>Enter the category</p>
                 <input type='text' className='form-control my-3 border-dark'
+                    onChange={handleChange}
+                    value={name}
                     autoFocus required placeholder='For Ex. Summer'/>
-                    <button className='btn btn-success rounded'>Create Category</button>
+                    <button className='btn btn-success rounded' onClick={onSubmit}>Create Category</button>
             </div>
         </form>
     }
@@ -34,6 +73,8 @@ const AddCategory = () => {
         <Base title='Create a category here' description='add a new category for Tshirts' className='container bg-success p-4'>
             <div className='row bg-white rounded'>
                 <div className='col-md-8 offset-md-2'>
+                   {successMessage()}
+                   {warningMessage()}
                    {myCategoryFrom()}
                    {goBack()}
                 </div> 
