@@ -11,6 +11,7 @@ import AddCategory from "./admin/AddCategory"
 import ManageCategories from './admin/ManageCategories'
 import AddProduct from './admin/AddProduct'
 import ManageProducts from './admin/ManageProducts'
+import updateProduct from './admin/UpdateProduct'
 /**
  * 
  * Note: From version 6 onwards, the react-router-dom has replaced “Switch” with “Routes”
@@ -28,6 +29,7 @@ const Routers = () => {
                 <AdminRoute path ="/admin/categories" exact component={ManageCategories} />
                 <AdminRoute path ="/admin/create/product" exact component={AddProduct} />
                 <AdminRoute path ="/admin/products" exact component={ManageProducts} />
+                <AdminRoute path ="/admin/product/update/:productId" exact component={updateProduct} />
             </Switch>
         </Router>
     )
